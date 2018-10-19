@@ -12,6 +12,7 @@ export default class Form extends Component {
     this.messageRef = firebase.database().ref().child('test');
     this.listenMessages();
   }
+  
   componentWillReceiveProps(nextProps) {
     if(nextProps.user) {
       this.setState({'userName': nextProps.user.displayName});
@@ -48,7 +49,7 @@ export default class Form extends Component {
   render() {
     return (
       <div className="form">
-        <div className="form__message">
+        <div className="form__message" id="box">
           {
             this.state.list.map((item, index) => {
               if (item.userName === this.state.userName) {

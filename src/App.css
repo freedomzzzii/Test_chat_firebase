@@ -62,12 +62,16 @@
   flex-wrap: nowrap;
   flex-direction: column;
   width: 100%;
+  height: inherit;
+  position: relative;
 }
 .form__row {
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
   padding: 20px;
+  position: absolute;
+  bottom: 0;
 }
 .form__input {
   width: 100%;
@@ -95,6 +99,9 @@
 .form__message {
   width: 100%;
   padding: 0 20px;
+  overflow-y: scroll;
+  overflow: auto;
+  height: calc(100vh - 264px - 85px);
 }
 .app {
   text-align: center;
@@ -107,6 +114,7 @@
   background-color: #222;
   padding: 20px;
   color: white;
+  height: 184px;
 }
 .app__intro {
   font-size: large;
@@ -116,6 +124,7 @@
   max-width: 600px;
   padding: 20px;
   margin: 0 auto;
+  height: calc(100vh - 264px);
 }
 .app__button {
   border: 0;

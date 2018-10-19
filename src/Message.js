@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 export default class Message extends Component {
+  componentDidMount() {
+    const div = document.getElementById("box");
+    div.scrollTop = div.scrollHeight - div.clientHeight;
+  }
   render() {
     return (
       <div>
