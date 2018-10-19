@@ -10,20 +10,28 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
+      room: null,
     }
+    this.textInput = React.createRef();
   }
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       this.setState({ user });
     });
   }
+
   handleSignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
   }
+
   handleLogOut() {
     firebase.auth().signOut();
   }
+
+  handleCreateRoom = e => this.setState({ room: e.target.value });
+
   render() {
     return (
       <div className="app">
@@ -48,11 +56,35 @@ class App extends Component {
             </button>
           )}
         </div>
-        <div className="app__list">
-          <Form user={this.state.user} />
-        </div>
+        {
+          // !this.state.user ?
+            <div className="app__list">
+              <Form user={this.state.user} />
+            </div>
+            // :<CreateRoom handleCreateRoom={this.handleCreateRoom} ref={this.textInput} />
+        }
       </div>
     );
   }
 }
 export default App;
+
+class CreateRoom extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      room: null,
+    };
+  }
+
+  handelRoom = e => this.setState({ room: e.target.value });
+
+  render() {
+    return(
+      <div>
+        <input onChange={this.handelRoom} />
+        <button onClick={this.props.handleCreateRoom}>create</button>
+      </div>
+    );
+  }
+}

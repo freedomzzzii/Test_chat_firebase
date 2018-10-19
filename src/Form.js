@@ -5,11 +5,11 @@ export default class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: 'Sebastian',
+      userName: 'username',
       message: '',
       list: [],
     };
-    this.messageRef = firebase.database().ref().child('messages');
+    this.messageRef = firebase.database().ref().child('test');
     this.listenMessages();
   }
   componentWillReceiveProps(nextProps) {
@@ -25,6 +25,7 @@ export default class Form extends Component {
       var newItem = {
         userName: this.state.userName,
         message: this.state.message,
+        time: `${new Date()}`,
       }
       this.messageRef.push(newItem);
       this.setState({ message: '' });
@@ -43,13 +44,33 @@ export default class Form extends Component {
         });
       });
   }
+
   render() {
     return (
       <div className="form">
         <div className="form__message">
-          { this.state.list.map((item, index) =>
-            <Message key={index} message={item} />
-          )}
+          {
+            this.state.list.map((item, index) => {
+              if (item.userName === this.state.userName) {
+                return (
+                  <Message
+                    className="rigth"
+                    key={index}
+                    message={item}
+                    date={index === 0 || new Date(this.state.list[index - 1].time).getDate() !== new Date(item.time).getDate() ? item.time : null}
+                  />
+                );
+              }
+              return (
+                <Message
+                  className="left"
+                  key={index}
+                  message={item}
+                  date={index === 0 || new Date(this.state.list[index - 1].time).getDate() !== new Date(item.time).getDate() ? item.time : null}
+                />
+              );
+            })
+          }
         </div>
         <div className="form__row">
           <input

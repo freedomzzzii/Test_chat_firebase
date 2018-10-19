@@ -1,19 +1,60 @@
 .message {
   position: relative;
-  padding: 10px 60px 10px 20px;
+  padding: 10px 20px;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.6);
-  background-color: rgba(0, 0, 0, .05);
-  text-align: left;
-  line-height: 1.7;
+  color: #4a4a4a;
 }
-.message:nth-child(even) {
-  background-color: rgba(0, 0, 0, .025);
+.message.rigth {
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+}
+.message .message__box {
+  max-width: 40%;
+  display: block;
+  text-align: left;
+}
+.message .message__text {
+  display: inline-block;
+  word-break: break-all;
+  vertical-align: middle;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+.message__text.left {
+  background-color: lightpink;
+  border-top-left-radius: 0px;
+}
+.message__text.rigth {
+  background-color: lightskyblue;
+  border-top-right-radius: 0px;
 }
 .message__author {
   font-weight: 600;
   margin-right: 10px;
-  color: rgba(0, 0, 0, 1);
+  display: inline-block;
+  width: 25px;
+  background-color: lightgray;
+  height: 25px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+}
+.message__time {
+  vertical-align: bottom;
+  font-size: 9px;
+}
+.message__time.rigth {
+  margin-right: 5px;
+}
+.message__time.left {
+  margin-left: 5px;
+}
+.message__date {
+  font-size: 9px;
+  background-color: #00000017;
+  padding: 3px 5px;
+  border-radius: 10px;
 }
 
 .form {
